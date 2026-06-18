@@ -1,0 +1,144 @@
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+    padding: 0 15px;
+  }
+  
+  .counter-box {
+    border: 1px solid black;
+    background-color: lightgrey;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .counter-box span {
+    margin-right: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 12px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+  
+  .btn-submit {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-header h3 {
+    margin: 0;
+  }
+  
+  .filter-controls {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .filter-controls select {
+    padding: 4px;
+    border: 1px solid black;
+  }
+  
+  .no-tasks {
+    font-style: italic;
+    color: gray;
+    margin-bottom: 15px;
+  }
+  
+  .task-card {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-title {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  
+  .task-priority {
+    font-size: 0.75em;
+    border: 1px solid black;
+    padding: 2px 6px;
+    margin-left: 10px;
+    border-radius: 10px;
+  }
+
+    .priority-high {
+    background-color: #ffcccc;
+    border-color: #cc0000 !important;
+    color: #cc0000;
+    font-weight: bold;
+    }
+
+    .priority-medium {
+    background-color: #ffe6cc;
+    border-color: #e67300 !important;
+    color: #e67300;
+    font-weight: bold;
+    }
+
+    .priority-low {
+    background-color: #ffffcc;
+    border-color: #b3b300 !important;
+    color: #b3b300;
+    font-weight: bold;
+    }
+  
+  .task-desc {
+    margin: 6px 0;
+    color: #444;
+    font-size: 0.95em;
+  }
+  
+  .task-date {
+    font-size: 0.85em;
+  }
+  
+  .done-text {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+  }
+  
+  .action-buttons button {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 10px;
+  }

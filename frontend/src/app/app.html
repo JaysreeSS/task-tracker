@@ -2,6 +2,11 @@
   
   <h2>TASK TRACKER</h2>
 
+  <div class="counter-box">
+    <span>{{ pendingCount }} Pending</span> 
+    <span>{{ doneCount }} Done</span>
+  </div>
+
   <form (ngSubmit)="addTask()" class="form-group">
     <div class="form-group">
       Title *
@@ -61,12 +66,19 @@
 
   <div *ngFor="let task of tasks" class="task-card">
     <div>
-      <div class="task-title" [class.done-text]="task.is_done">
-        {{ task.title }} 
-        <span class="task-priority">{{ task.priority }}</span>
+      <div>
+        <div class="task-title" [class.done-text]="task.is_done">{{ task.title }} 
+          <span class="task-priority" [ngClass]="{
+            'priority-high': task.priority === 'High',
+            'priority-medium': task.priority === 'Medium',
+            'priority-low': task.priority === 'Low'
+          }">{{ task.priority }}</span>
+        </div>
+
+        <div *ngIf="task.description" class="task-desc" [class.done-text]="task.is_done">{{ task.description }}</div>
+
+        <div *ngIf="task.due_date" class="task-date" [class.done-text]="task.is_done">Due: {{ task.due_date }}</div>
       </div>
-      <div class="task-desc" [class.done-text]="task.is_done">{{ task.description }}</div>
-      <div *ngIf="task.due_date" class="task-date">Due: {{ task.due_date }}</div>
     </div>
 
     <div class="action-buttons">

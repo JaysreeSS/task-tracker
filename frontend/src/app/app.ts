@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App implements OnInit {
   private apiUrl = 'http://127.0.0.1:5000/api/tasks';
@@ -25,7 +25,8 @@ export class App implements OnInit {
     due_date: ''
   };
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.fetchTasks();
@@ -47,6 +48,7 @@ export class App implements OnInit {
     this.http.get<any[]>(url).subscribe({
       next: (data) => {
         this.tasks = data; 
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Database load failed', err);
@@ -61,9 +63,10 @@ export class App implements OnInit {
       next: () => {
         this.newTask = { title: '', description: '', priority: 'Medium', due_date: '' };
         this.fetchTasks();
+        window.alert('Task created');
       }
     });
-  }
+  }  
 
   toggleDone(task: any): void {
     this.http.put(`${this.apiUrl}/${task.id}`, { is_done: !task.is_done }).subscribe({
