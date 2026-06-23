@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Task Tracker is for managing tasks with CRUD operations. 
+Task Tracker is a simple web app for organizing personal tasks. It lets users create, view, update, and delete tasks while tracking status, priority, and due dates through an Angular frontend and Flask backend.
 
 ## Tech Stack
 
@@ -62,6 +62,39 @@ http://localhost:4200/
 ```
 
 ![frontend running](/images/image-1.png)
+
+## Vercel Deployment
+
+This project is configured for Vercel using `vercel.json` and the API function in `api/index.py`.
+
+1. Connect the repository to Vercel or install the Vercel CLI:
+
+```bash
+npm install -g vercel
+```
+
+2. From the project root, run:
+
+```bash
+vercel
+```
+
+3. In the Vercel dashboard, add these environment variables for the project:
+
+```text
+SUPABASE_URL=<your-supabase-url>
+SUPABASE_KEY=<your-supabase-key>
+```
+
+4. Deploy using GitHub integration or:
+
+```bash
+vercel --prod
+```
+
+5. After deployment, the frontend is served from the Vercel domain and the backend API is available at `/api/tasks`.
+
+> On local development, the app uses `http://127.0.0.1:5000/api/tasks` when running on `localhost`, and on Vercel it uses the relative API path `/api/tasks`.
 
 ## Works Implemented
 

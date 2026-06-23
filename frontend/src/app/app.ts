@@ -11,7 +11,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.css']
 })
 export class App implements OnInit {
-  private apiUrl = 'http://127.0.0.1:5000/api/tasks';
+  private apiUrl = window.location.hostname === 'localhost'
+    ? 'http://127.0.0.1:5000/api/tasks'
+    : '/api/tasks';
 
   tasks: any[] = [];
   
