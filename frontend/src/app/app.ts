@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.css']
 })
 export class App implements OnInit {
-  private apiUrl = window.location.hostname === 'localhost'
-    ? 'http://127.0.0.1:5000/api/tasks'
-    : '/api/tasks';
+  private apiUrl = environment.apiUrl;
 
   tasks: any[] = [];
   
