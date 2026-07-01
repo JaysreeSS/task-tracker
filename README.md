@@ -43,13 +43,11 @@ The application allows a user to:
 
 ### Additional Work
 
-* Vercel deployment configuration attempted
 * Responsive task list UI
 * Automatic UI refresh after CRUD actions
+* Successful deployment using Vercel + Render
 
 ---
-
-## Tech Stack
 
 ## Tech Stack
 
@@ -65,7 +63,8 @@ The application allows a user to:
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
 
 * Deployment:  
-![Vercel](https://img.shields.io/badge/Vercel-Attempted-black?style=flat-square&logo=vercel&logoColor=white)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?style=flat-square&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=flat-square)
 
 ---
 
@@ -75,16 +74,17 @@ The application allows a user to:
 task-tracker/
 │
 ├── frontend/              # Angular frontend
+│   ├── src/
+│   ├── package.json
+│   ├── angular.json
+│   └── vercel.json
 │
 ├── backend/               # Flask backend
-│   └── app.py
-│
-├── api/                   # Vercel serverless API
-│   └── index.py
+│   ├── app.py
+│   └── requirements.txt
 │
 ├── images/                # Screenshots
 │
-├── vercel.json
 └── README.md
 ```
 
@@ -108,13 +108,13 @@ CREATE TABLE tasks (
 
 ## REST API Endpoints
 
-| Method | Endpoint    | Description       |
-| ------ | ----------- | ----------------- |
-| GET    | /api/tasks  | Fetch all tasks   |
-| GET    | /api/tasks/ | Fetch single task |
-| POST   | /api/tasks  | Create new task   |
-| PUT    | /api/tasks/ | Update task       |
-| DELETE | /api/tasks/ | Delete task       |
+| Method | Endpoint        | Description       |
+| ------ | --------------- | ----------------- |
+| GET    | /api/tasks      | Fetch all tasks   |
+| GET    | /api/tasks/<id> | Fetch single task |
+| POST   | /api/tasks      | Create new task   |
+| PUT    | /api/tasks/<id> | Update task       |
+| DELETE | /api/tasks/<id> | Delete task       |
 
 ---
 
@@ -134,7 +134,7 @@ cd task-tracker
 Install dependencies:
 
 ```bash
-pip install flask flask-cors python-dotenv supabase
+pip install -r backend/requirements.txt
 ```
 
 Create `.env` file inside backend:
@@ -186,112 +186,67 @@ http://localhost:4200
 
 ---
 
+## Deployment
+
+### Production Architecture
+
+```text
+Frontend (Vercel)
+      ↓
+Backend API (Render)
+      ↓
+Supabase Database
+```
+
+---
+
 ## Screenshots
 
 ### Project Setup
 #### Backend Running
 ![backend running](/images/backend-running.png)
+
 #### Frontend Running
 ![frontend running](/images/frontend-running.png)
-
 
 ### Database Setup
 #### Tasks table schema
 ![Database Schema](/images/db-schema.png)
+
 #### Seed data
 ![Seed Data](/images/db-seed.png)
 
 ### Core Features
 #### Task Form with Counter
 ![Task Form](/images/task-form.png)
+
 #### Task Created Successfully
 ![Task Created](/images/task-created.png)
+
 #### Full Task List, sorted nearest due date
 ![Full Tasks](/images/full-task.png)
+
 #### Filter by Status
 ![Status Filter](/images/status-filter.png)
+
 #### Filter by Priority
 ![Priority Filter](/images/priority-filter.png)
+
 #### Delete Confirmation
- ![Delete](/images/delete-confirm.png)
+![Delete](/images/delete-confirm.png)
 
 ### API Testing
 #### GET
 ![GET API](/images/get-api.png)
+
 #### POST
-![GET API](/images/post-api.png)
+![POST API](/images/post-api.png)
+
 #### PUT
-![GET API](/images/put-api.png)
+![PUT API](/images/put-api.png)
+
 #### DELETE
-![GET API](/images/delete-api.png)
-
----
-
-## Git Progress / Commits
-
-### Commit 1
-
-* Created Git repository
-* Added initial README
-
-### Commit 2
-
-* Set up Supabase database
-* Created tasks table
-* Added sample data
-
-### Commit 3
-
-* Built Flask REST API
-* Tested CRUD endpoints
-
-### Commit 4
-
-* Built Angular frontend
-* Connected frontend to backend
-
-### Commit 5
-
-* Added styling
-* Added task counters
-* Added delete confirmation
-* Updated README
-
----
-
-## Deployment (Vercel)
-
-Deployment configuration was prepared using:
-
-* `vercel.json`
-* `api/index.py`
-
-Steps used:
-
-```bash
-npm install -g vercel
-vercel
-vercel --prod
-```
-
-Environment variables configured in Vercel:
-
-```env
-SUPABASE_URL=<your-supabase-url>
-SUPABASE_KEY=<your-supabase-key>
-```
-
-Expected production API route:
-
-```text
-/api/tasks
-```
-
-### Deployment Status
-
-* Configuration completed
-* Deployment attempted
-* Final production deployment requires further debugging for frontend-backend integration on Vercel
+![DELETE API](/images/delete-api.png)
 
 ---
 
@@ -335,7 +290,9 @@ These were listed as stretch goals and were not completed due to time constraint
 
 * Configuring frontend and backend communication
 * Handling Angular API integration with Flask
-* Adapting Flask backend for Vercel serverless deployment
+* Deploying Angular frontend on Vercel
+* Deploying Flask backend on Render
+* Managing environment-based API configuration
 
 ---
 
@@ -353,6 +310,6 @@ Given more time, I would implement:
 
 ## Final Note
 
-This project successfully implements the core requirements of the Task Tracker with working CRUD operations, filtering, and task counters.
+This project successfully implements the core requirements of the Task Tracker with working CRUD operations, filtering, sorting, counters, and deployment.
 
-The primary remaining work is improving deployment stability and implementing stretch goals.
+The remaining work includes optional stretch goals such as search and pagination.
